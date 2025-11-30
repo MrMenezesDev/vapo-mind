@@ -47,26 +47,24 @@ Inspirado na **Pedagogia da Autonomia** (Paulo Freire), o sistema parte das minh
 
 ### 3.1. Camada de Entrada: Obsidian (Interface de Baixa Fricção)
 
-**Estrutura de Vault:**
+**Estrutura de Vault (Atualizada):**
 
 ```
 MeuVapoMind/
 ├── 📁 Perfil/
+│   ├── 📁 _anexos/          <-- Exames, fotos pessoais
 │   └── meu-perfil.md
 ├── 📁 Inventario/
-│   ├── flores.md
-│   ├── botanicos.md
-│   └── dispositivos.md
+│   ├── 📁 _anexos/          <-- Fotos macro (flores) e montagens (devices)
+│   └── Inventario-Geral.md  <-- Arquivo único consolidado (Flores, Botânicos, Devices)
 ├── 📁 Protocolos/
+│   ├── 📁 _anexos/          <-- Gráficos de temp e GIFs de respiração
 │   ├── sono-profundo.md
-│   ├── foco-criativo.md
-│   └── recovery-pos-treino.md
+│   └── foco-criativo.md
 ├── 📁 Sessoes/
+│   ├── 📁 _anexos/          <-- Fotos de resíduos (AVB) e ambiente (set)
 │   ├── 2025/
-│   │   ├── 2025-01/
-│   │   │   ├── 2025-01-15-sessao-22h30.md
-│   │   │   └── 2025-01-20-sessao-21h00.md
-│   │   └── 2025-02/
+│   │   └── ...
 │   └── _templates/
 │       └── template-sessao.md
 ├── 📁 Analises/
@@ -88,7 +86,7 @@ MeuVapoMind/
 
 **Formato de Nota de Sessão (YAML Frontmatter):**
 
-Cada nota de sessão usa **Properties/Frontmatter** para dados estruturados e corpo Markdown para reflexões qualitativas.
+Cada nota de sessão usa **Properties/Frontmatter** para dados estruturados e corpo Markdown para reflexões qualitativas. O uso de **Links ([[ ]])** é mandatório para conectar a experiência ao inventário.
 
 ```markdown
 ---
@@ -96,7 +94,7 @@ Cada nota de sessão usa **Properties/Frontmatter** para dados estruturados e co
 tipo: sessao
 data: 2025-01-20
 hora_inicio: "22:30"
-status: aberta  # aberta | fechada | pendente_checkout
+status: aberta
 
 # Check-in
 atividade_antes: estudo
@@ -104,27 +102,21 @@ mood_pre: 4
 mood_tags_pre: [mente_acelerada, tensao_ombros]
 intencao_tipo: medicinal
 estado_desejado: [calmo, sono_profundo]
-expectativa: "Desacelerar pensamentos sem ficar grogue"
 
-# Protocolo
-blend: "60% Skunk + 30% Lavanda + 10% Camomila"
+# Protocolo (Link para o arquivo do protocolo)
+protocolo_ref: "[[Sono Profundo]]" 
+blend: "[[Inventario-Geral#Skunk Wolf|Skunk]] (60%) + [[Inventario-Geral#Lavanda|Lavanda]] (30%)"
 temperatura_inicial: 185
 temperatura_final: 200
-dispositivo: "V3 Pro"
+dispositivo: "[[Inventario-Geral#XMAX V3 Pro|V3 Pro]]"
+modo_dispositivo: "Sessão 4min" # Referência ao modo cadastrado no inventário
 acessorio: bubbler
-ritual_pre: "5min respiracao 4-7-8"
 
-# Check-out (preenchido depois - pode ficar vazio inicialmente)
+# Check-out
 hora_checkout: ""
 mood_pos: null
-mood_tags_pos: []
 alinhamento: null
 vontade_redosar: null
-reflexao_curta: ""
-
-# Metadados de Análise
-gatilho_detectado: false
-tipo_gatilho: ""
 ---
 
 # Sessão: 2025-01-20 | 22:30
@@ -164,69 +156,14 @@ Vou fazer o blend "Sono Profundo" mas ajustado: mais lavanda que o normal porque
 - Redosar? Sim/Não
 - Reflexão: O que aprendi?
 -->
-```
 
-### Exemplo Preenchido
-
-```markdown
-# Sessão: 2025-01-20 | 22:30
-
-## PRÉ-SESSÃO
-
-**O que eu fiz antes:**
-- Atividade: Estudei 4h para certificação, cabeça quente
-- Estado emocional: 4/10 (cansado, ansioso)
-- Tags: [mente acelerada, tensão nos ombros]
-
-**Minha Intenção:**
-- Tipo: Medicinal + Fuga/Ansiedade (honestidade)
-- Estado desejado: Desacelerar pensamentos, relaxar ombros, dormir bem
-- Expectativa: Conseguir desligar sem ficar grogue amanhã
-
-**Protocolo:**
-- Blend: 60% Skunk Wolf + 30% Lavanda + 10% Camomila
-- Temperatura: 185°C (primeira sessão) → 200°C (segunda)
-- Dispositivo: XMAX V3 Pro com bubbler
-- Ritual: 5min de respiração 4-7-8 + alongamento de ombro
+## 📷 Registros Visuais
+![[sess-20250120-residuo.jpg|right|200]]
+*Legenda: Resíduo marrom claro, extração eficiente.*
 
 ---
 
-## DURANTE
-
-**Observações:**
-- Sabor: Floral no início (lavanda), depois terroso
-- Sensações: Relaxamento começou nos ombros, depois desceu
-- Pensamentos: Menos looping, consegui "assistir" os pensamentos passarem
-- Harshness: 2/10 (bubbler ajudou muito)
-
----
-
-## PÓS-SESSÃO (23:45)
-
-**Estado final:**
-- Humor: 7/10 (relaxado, sonolento)
-- Tags: [calmo, corpo pesado, mente clara]
-- Alinhamento: 85%
-
-**Reflexão:**
-- Aprendi: Lavanda + camomila juntas = knockout, mas preciso usar ANTES de 22h se quiser acordar bem
-- Vontade de redosar: Não (isso é progresso!)
-- Próxima ação: Banho morno + cama
-
-**Análise:**
-- Intenção cumprida? Totalmente
-- Dose: Ideal (talvez até 10% menos lavanda)
-- Temperatura: 185°C foi perfeito, 200°C ficou muito forte
-
----
-
-## TAGS
-#intenção-medicinal #dispositivo-v3pro #blend-lavanda-camomila #resultado-85
-```
-
----
-
-## 6. Protocolos Pessoais (Templates)
+## 4. Protocolos Pessoais (Templates)
 
 ### Protocolo: Sono Profundo 💤
 
@@ -301,7 +238,7 @@ Vou fazer o blend "Sono Profundo" mas ajustado: mais lavanda que o normal porque
 
 ---
 
-## 7. Sistema de Análise Pessoal
+## 5. Sistema de Análise Pessoal
 
 ### Perguntas Semanais (Domingo à noite)
 
@@ -336,453 +273,142 @@ Vou fazer o blend "Sono Profundo" mas ajustado: mais lavanda que o normal porque
 
 ---
 
-## 8. Calibração Pessoal de Tolerância
+## 6. Estrutura de Inventário Unificado e Rico
 
-### Primeiras 5 Sessões
+Para maximizar o poder dos links do Obsidian, o inventário será centralizado em um único arquivo (`Inventario-Geral.md`). Isso permite linkar diretamente para seções específicas (ex: `[[Inventario-Geral#Lemon Haze]]`) dentro das sessões e protocolos.
 
-**Regra de Ouro:**
-Começar com **10-15% menos** do que acho que preciso
+**Arquivo: `Inventario/Inventario-Geral.md`**
 
-**Registro:**
-| Sessão | Dose/Temp | Alinhamento | Harshness | Notas |
-|--------|-----------|-------------|-----------|-------|
-| 1 | 0.1g / 175°C | 60% | 3/10 | Pouco efeito, mas suave |
-| 2 | 0.12g / 180°C | 75% | 4/10 | Melhor, mas ainda leve |
-| 3 | 0.15g / 185°C | 85% | 5/10 | Sweet spot! |
-| 4 | 0.15g / 185°C | 80% | 5/10 | Confirmado |
-| 5 | 0.18g / 190°C | 70% | 7/10 | Excessivo, voltar |
+```markdown
+# Inventário Geral
 
-**Conclusão:**
-Minha dose ideal atual: **0.15g a 185°C**
+## 🌿 Flores (Cannabis)
 
----
+### Lemon Haze
+![[inv-flor-lemonhaze-macro.jpg|right|250]]
+- **Tipo:** Sativa Dominante
+- **Terpeno Principal:** Limoneno (Cítrico/Energia)
+- **Estoque:** Alto
+- **Efeito Esperado:** Foco, criatividade, leve euforia.
+- **Melhor Temperatura:** 175°C - 185°C
 
-## 9. Modo SOS (Protocolo de Ancoragem)
-
-### Se eu entrar em pânico/paranóia:
-
-**PARE. RESPIRE. ANCORE.**
-
-**Passo 1: Reconhecer**
-- "Estou em bad trip. Isso é temporário. Vai passar."
-
-**Passo 2: Respiração 4-7-8 (Repetir 5x)**
-- Inspire (nariz): 4 segundos
-- Segure: 7 segundos
-- Expire (boca): 8 segundos
-
-**Passo 3: Aterramento Físico**
-- Toque 5 objetos ao redor
-- Diga seus nomes em voz alta
-- Água gelada no rosto
-
-**Passo 4: Áudio Guiado**
-- [Link para meditação de emergência salva]
-- Ou música conhecida e confortável
-
-**Passo 5: Registro Pós-Crise**
-- O que desencadeou? (dose? contexto? emoção?)
-- Protocolo de prevenção para próxima vez
-
-**BLOQUEIO:**
-Não vaporizar novamente nas próximas 24-48h. Refletir primeiro.
+### OG Kush
+![[inv-flor-ogkush-macro.jpg|right|250]]
+- **Tipo:** Indica Dominante
+- **Terpeno Principal:** Mirceno (Terroso/Relaxamento)
+- **Estoque:** Baixo
+- **Efeito Esperado:** Relaxamento físico, sono, anti-ansiedade.
 
 ---
 
-## 10. Jornada de Autonomia (Gamificação Pessoal)
+## 🍂 Botânicos (Ervas Legais)
 
-Não preciso de badges ou pontos externos. Minha progressão é interna:
+### Lavanda
+- **Propriedade:** Calmante, ansiolítico.
+- **Temp. Vaporização:** 130°C - 190°C
+- **Sinergia:** Ótima com Indicas para sono.
 
-### 🌱 Aprendiz (Primeiros 30 dias)
-- **Foco:** Conhecer meu corpo e tolerância
-- **Meta:** Completar 15 sessões com check-in/check-out completo
-- **Aprendizado:** Temperatura ideal, blends que funcionam, gatilhos
-
-### 🧪 Praticante (Meses 2-4)
-- **Foco:** Refinar e experimentar
-- **Meta:** Alinhamento médio >70%
-- **Aprendizado:** Criar 3 protocolos próprios, identificar padrões semanais
-
-### ⚗️ Artífice (Meses 5-12)
-- **Foco:** Maestria e prevenção
-- **Meta:** Alinhamento >80%, redução de 20% no consumo total via botânicos
-- **Aprendizado:** Completar 1 T-Break de 7 dias, ajudar alguém (se aplicável)
-
-### 🔮 Mestre (Ano 2+)
-- **Foco:** Autonomia total
-- **Meta:** Não preciso mais do sistema para decidir, só para registrar
-- **Aprendizado:** Uso intencional 95% do tempo, sem padrões compulsivos
+### Camomila
+- **Propriedade:** Sedativo leve, relaxante muscular.
+- **Temp. Vaporização:** 190°C
 
 ---
 
-## 11. Princípios Éticos Pessoais
+## 🎮 Dispositivos e Acessórios
 
-### Honestidade Radical
-- Registrar a verdade, mesmo quando for "uso por fuga"
-- O diário não julga, eu aprendo
+### XMAX V3 Pro
+![[inv-disp-v3pro-montagem.jpg|right|250]]
+- **Tipo:** Convecção Híbrida
+- **Modos de Operação:**
+    - **Sessão 4min:** Ideal para microdosing ou sabor intenso rápido.
+    - **Sessão 6min:** Ideal para extração completa (AVB escuro).
+    - **On-Demand:** Para tragadas únicas e rápidas (foco em efeito imediato).
+- **Dicas de Uso:** Puxada longa e suave (>10s) para ativar a convecção.
 
-### Não-Julgamento
-- Recaídas fazem parte do processo
-- O objetivo é progresso, não perfeição
-
-### Curiosidade Científica
-- Cada sessão é um experimento
-- Coletar dados sem apego emocional ao resultado
-
-### Respeito à Planta
-- Cannabis é uma ferramenta, não uma muleta
-- Uso com gratidão e propósito
-
----
-
-## 12. Recursos e Referências Pessoais
-
-### Leituras Fundamentais
-- "Pedagogia da Autonomia" - Paulo Freire
-- "The Psychedelic Explorer's Guide" - James Fadiman
-- "How to Change Your Mind" - Michael Pollan
-
-### Ferramentas Úteis
-- **Obsidian:** Para sistema de notas vinculadas
-- **Notion:** Alternativa visual para diário
-- **Google Sheets:** Análises automáticas
-- **Insight Timer:** Meditações guiadas
-
-### Comunidades (Opcional)
-- r/vaporents (Reddit)
-- Grupos de Redução de Danos
-
----
-
-## 13. Modelo de Dados e Métricas de Impacto
-
-### 13.1. Schema Expandido (SQLite)
-
-**Além das tabelas já descritas na seção 3.3, adicionamos:**
-
-```sql
--- Tabela de métricas de vida (para cruzamento)
-CREATE TABLE metricas_vida (
-    id INTEGER PRIMARY KEY,
-    data DATE UNIQUE,
-    
-    -- Produtividade
-    horas_foco REAL,
-    tarefas_concluidas INTEGER,
-    qualidade_trabalho INTEGER CHECK(qualidade_trabalho BETWEEN 1 AND 5),
-    
-    -- Saúde
-    horas_sono REAL,
-    qualidade_sono INTEGER CHECK(qualidade_sono BETWEEN 1 AND 5),
-    treino_realizado BOOLEAN,
-    dor_nivel INTEGER CHECK(dor_nivel BETWEEN 0 AND 10),
-    
-    -- Bem-estar geral
-    humor_geral INTEGER CHECK(humor_geral BETWEEN 0 AND 10),
-    ansiedade_nivel INTEGER CHECK(ansiedade_nivel BETWEEN 0 AND 10),
-    energia_nivel INTEGER CHECK(energia_nivel BETWEEN 0 AND 10),
-    
-    -- Social
-    interacoes_sociais INTEGER,
-    qualidade_relacoes INTEGER CHECK(qualidade_relacoes BETWEEN 1 AND 5),
-    
-    -- Notas
-    observacoes TEXT,
-    registrado_em DATETIME
-);
-
--- Tabela de eventos de vida (para análise de gatilhos)
-CREATE TABLE eventos_vida (
-    id INTEGER PRIMARY KEY,
-    data DATE,
-    tipo TEXT,  -- 'trabalho' | 'conflito' | 'celebracao' | 'perda' | 'estresse'
-    descricao TEXT,
-    intensidade INTEGER CHECK(intensidade BETWEEN 1 AND 5),
-    registrado_em DATETIME
-);
-
--- View de correlação: Uso vs Vida
-CREATE VIEW vw_impacto_vida AS
-SELECT 
-    m.data,
-    m.humor_geral,
-    m.qualidade_sono,
-    m.horas_foco,
-    COUNT(s.id) as sessoes_dia,
-    AVG(s.alinhamento) as alinhamento_medio,
-    SUM(CASE WHEN s.intencao_tipo = 'Fuga/Ansiedade' THEN 1 ELSE 0 END) as sessoes_fuga
-FROM metricas_vida m
-LEFT JOIN sessoes s ON DATE(s.data) = m.data
-GROUP BY m.data;
+### Dynavap M
+- **Tipo:** Condução/Mecânico
+- **Modos:**
+    - **Aquecimento na Base:** Nuvens densas, extração rápida (1-2 ciclos).
+    - **Aquecimento na Ponta:** Sabor, extração lenta (3-4 ciclos).
 ```
 
-### 13.2. Métricas de Impacto Real na Vida
+---
 
-**Pergunta Central:** "O VapoMind está melhorando minha vida ou só gerando dados?"
+## 7. Protocolos Gerados e Linkagem
 
-**Métricas Implementadas:**
+Quando o Agente (ou você) criar um novo protocolo, ele deve ser salvo em `Protocolos/` e fazer referência explícita aos itens do inventário.
 
-#### A. Métricas de Processo (O que você controla)
+**Exemplo: `Protocolos/Foco-Zen.md`**
 
-1. **Taxa de Fechamento de Loops**
-   ```sql
-   SELECT 
-       COUNT(CASE WHEN is_incomplete = FALSE THEN 1 END) * 100.0 / COUNT(*) as taxa_completas
-   FROM sessoes
-   WHERE data >= date('now', '-30 days');
-   ```
-   - Meta: >80% de sessões com check-out completo
+```markdown
+# Protocolo: Foco Zen
 
-2. **Alinhamento Médio Mensal**
-   ```sql
-   SELECT 
-       strftime('%Y-%m', data) as mes,
-       AVG(alinhamento) as alinhamento_medio,
-       COUNT(*) as num_sessoes
-   FROM sessoes
-   WHERE alinhamento IS NOT NULL
-   GROUP BY mes
-   ORDER BY mes;
-   ```
-   - Meta: Tendência crescente ao longo dos meses
+**Objetivo:** Trabalho criativo sem ansiedade.
 
-3. **Taxa de Uso Intencional vs Escapismo**
-   ```sql
-   SELECT 
-       intencao_tipo,
-       COUNT(*) as quantidade,
-       COUNT(*) * 100.0 / SUM(COUNT(*)) OVER() as percentual
-   FROM sessoes
-   WHERE data >= date('now', '-30 days')
-   GROUP BY intencao_tipo;
-   ```
-   - Meta: Reduzir "Fuga/Ansiedade" abaixo de 20%
+## 🛠️ Setup Necessário
+- **Erva:** [[Inventario-Geral#Lemon Haze]] (ou qualquer Sativa rica em Limoneno)
+- **Botânico:** [[Inventario-Geral#Alecrim]] (Opcional para memória)
+- **Dispositivo:** [[Inventario-Geral#XMAX V3 Pro]]
+- **Modo Sugerido:** "Sessão 6min" (Baixa temperatura)
 
-#### B. Métricas de Resultado (O impacto na vida real)
+## 🌡️ Ciclo de Temperaturas
+![[prot-foco-temp.jpg|right|300]]
 
-4. **Correlação: Uso vs Qualidade do Sono**
-   ```sql
-   SELECT 
-       CASE 
-           WHEN sessoes_dia = 0 THEN 'Sem uso'
-           WHEN sessoes_dia = 1 THEN '1 sessão'
-           ELSE '2+ sessões'
-       END as frequencia,
-       AVG(qualidade_sono) as sono_medio,
-       AVG(humor_geral) as humor_medio
-   FROM vw_impacto_vida
-   WHERE data >= date('now', '-60 days')
-   GROUP BY frequencia;
-   ```
-   - Análise: Identificar se há relação positiva, negativa ou neutra
+1. **00:00 - 02:00:** 170°C (Sabor e Terpenos)
+2. **02:00 - 04:00:** 180°C (Foco mental)
+3. **04:00 - 06:00:** Manter 180°C (Não subir para evitar sedação)
 
-5. **Delta de Produtividade (Dias com uso vs sem uso)**
-   ```sql
-   SELECT 
-       CASE WHEN sessoes_dia > 0 THEN 'Com uso' ELSE 'Sem uso' END as grupo,
-       AVG(horas_foco) as foco_medio,
-       AVG(tarefas_concluidas) as tarefas_media,
-       AVG(qualidade_trabalho) as qualidade_media
-   FROM vw_impacto_vida
-   WHERE horas_foco IS NOT NULL
-     AND data >= date('now', '-60 days')
-   GROUP BY grupo;
-   ```
-   - Pergunta: "Nos dias que uso, sou mais ou menos produtivo?"
-
-6. **Análise de Gatilhos Emocionais**
-   ```sql
-   SELECT 
-       s.atividade_antes,
-       COUNT(*) as vezes,
-       AVG(s.mood_pre) as humor_pre_medio,
-       AVG(s.alinhamento) as alinhamento_medio,
-       SUM(CASE WHEN s.intencao_tipo = 'Fuga/Ansiedade' THEN 1 ELSE 0 END) as sessoes_fuga
-   FROM sessoes s
-   WHERE s.data >= date('now', '-60 days')
-   GROUP BY s.atividade_antes
-   HAVING COUNT(*) >= 3
-   ORDER BY sessoes_fuga DESC, vezes DESC
-   ```
-   - Identificar padrões: "Sempre vaporizo depois de reuniões?"
-
-#### C. Métricas de Autonomia (Evolução do autoconhecimento)
-
-7. **Precisão de Previsão (Expectativa vs Realidade)**
-   ```sql
-   SELECT 
-       AVG(alinhamento) as precisao_media,
-       strftime('%Y-%m', data) as mes
-   FROM sessoes
-   WHERE alinhamento IS NOT NULL
-   GROUP BY mes
-   ORDER BY mes;
-   ```
-   - Meta: Alinhamento aumentando = você está aprendendo a se conhecer
-
-8. **Taxa de Redosagem**
-   ```sql
-   SELECT 
-       strftime('%Y-%W', data) as semana,
-       SUM(CASE WHEN vontade_redosar = TRUE THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as taxa_redosagem
-   FROM sessoes
-   WHERE vontade_redosar IS NOT NULL
-   GROUP BY semana
-   ORDER BY semana;
-   ```
-   - Meta: Tendência decrescente = maior controle
-
-### 13.3. Dashboard de Impacto de Vida
-
-**Script adicional (`impact_metrics.py`):**
-
-```python
-# filepath: f:\repositorios\projetos\vapo-mind\MeuVapoMind\Scripts\impact_metrics.py
-import sqlite3
-import pandas as pd
-from datetime import datetime, timedelta
-
-DB_PATH = "../Data/vapomind.db"
-
-def analise_impacto_vida():
-    """Gera relatório de impacto do uso na qualidade de vida"""
-    conn = sqlite3.connect(DB_PATH)
-    
-    print("=" * 60)
-    print("📊 RELATÓRIO DE IMPACTO NA VIDA REAL")
-    print("=" * 60)
-    print()
-    
-    # 1. Correlação: Uso vs Sono
-    print("💤 SONO")
-    df_sono = pd.read_sql("""
-        SELECT 
-            CASE 
-                WHEN sessoes_dia = 0 THEN 'Sem uso'
-                WHEN sessoes_dia = 1 THEN '1 sessão'
-                ELSE '2+ sessões'
-            END as frequencia,
-            AVG(qualidade_sono) as sono_medio,
-            COUNT(*) as dias
-        FROM vw_impacto_vida
-        WHERE qualidade_sono IS NOT NULL
-          AND data >= date('now', '-60 days')
-        GROUP BY frequencia
-    """, conn)
-    
-    if not df_sono.empty:
-        print(df_sono.to_string(index=False))
-        print()
-        
-        # Interpretação automática
-        if len(df_sono) >= 2:
-            sem_uso = df_sono[df_sono['frequencia'] == 'Sem uso']['sono_medio'].values
-            com_uso = df_sono[df_sono['frequencia'] != 'Sem uso']['sono_medio'].mean()
-            
-            if len(sem_uso) > 0:
-                delta = com_uso - sem_uso[0]
-                if delta > 0.5:
-                    print("✅ Seu sono parece MELHOR nos dias de uso")
-                elif delta < -0.5:
-                    print("⚠️ Seu sono parece PIOR nos dias de uso")
-                else:
-                    print("➡️ Uso parece NEUTRO para o sono")
-                print()
-    
-    # 2. Produtividade
-    print("⚡ PRODUTIVIDADE")
-    df_prod = pd.read_sql("""
-        SELECT 
-            CASE WHEN sessoes_dia > 0 THEN 'Com uso' ELSE 'Sem uso' END as grupo,
-            AVG(horas_foco) as foco_medio,
-            AVG(tarefas_concluidas) as tarefas_media,
-            COUNT(*) as dias
-        FROM vw_impacto_vida
-        WHERE horas_foco IS NOT NULL
-          AND data >= date('now', '-60 days')
-        GROUP BY grupo
-    """, conn)
-    
-    if not df_prod.empty:
-        print(df_prod.to_string(index=False))
-        print()
-    
-    # 3. Gatilhos mais comuns
-    print("🎯 GATILHOS IDENTIFICADOS")
-    df_gatilhos = pd.read_sql("""
-        SELECT 
-            atividade_antes,
-            COUNT(*) as vezes,
-            AVG(mood_pre) as humor_pre,
-            SUM(CASE WHEN intencao_tipo = 'Fuga/Ansiedade' THEN 1 ELSE 0 END) as sessoes_fuga
-        FROM sessoes
-        WHERE data >= date('now', '-60 days')
-          AND atividade_antes IS NOT NULL
-        GROUP BY atividade_antes
-        HAVING COUNT(*) >= 3
-        ORDER BY sessoes_fuga DESC, vezes DESC
-        LIMIT 5
-    """, conn)
-    
-    if not df_gatilhos.empty:
-        print(df_gatilhos.to_string(index=False))
-        print()
-        
-        # Alertas
-        for _, row in df_gatilhos.iterrows():
-            if row['sessoes_fuga'] / row['vezes'] > 0.5:
-                print(f"⚠️ ALERTA: '{row['atividade_antes']}' é um gatilho forte de fuga ({row['sessoes_fuga']}/{row['vezes']} sessões)")
-        print()
-    
-    # 4. Evolução de alinhamento
-    print("📈 EVOLUÇÃO DE CONSCIÊNCIA")
-    df_evolucao = pd.read_sql("""
-        SELECT 
-            strftime('%Y-%m', data) as mes,
-            AVG(alinhamento) as alinhamento_medio,
-            COUNT(*) as sessoes
-        FROM sessoes
-        WHERE alinhamento IS NOT NULL
-        GROUP BY mes
-        ORDER BY mes DESC
-        LIMIT 6
-    """, conn)
-    
-    if not df_evolucao.empty:
-        print(df_evolucao.to_string(index=False))
-        
-        # Tendência
-        if len(df_evolucao) >= 3:
-            tendencia = df_evolucao['alinhamento_medio'].diff().mean()
-            if tendencia > 2:
-                print("\n✅ Tendência POSITIVA: Você está melhorando no autoconhecimento!")
-            elif tendencia < -2:
-                print("\n⚠️ Tendência NEGATIVA: Alinhamento caindo - revisar protocolos")
-            else:
-                print("\n➡️ Tendência ESTÁVEL: Mantendo consistência")
-    
-    print("\n" + "=" * 60)
-    print("💡 PRÓXIMAS AÇÕES SUGERIDAS:")
-    print("=" * 60)
-    print("1. Se há gatilhos de fuga frequentes, considere alternativas (respiração, exercício)")
-    print("2. Se sono está pior, experimente parar uso 2h antes de dormir")
-    print("3. Se alinhamento está baixo, revise seus protocolos - eles ainda fazem sentido?")
-    print()
-    
-    conn.close()
-
-if __name__ == "__main__":
-    analise_impacto_vida()
+## 🌬️ Respiração
+![[prot-resp-box.gif|left|150]]
+Utilize a **Respiração Quadrada (Box Breathing)** durante o aquecimento do aparelho.
 ```
 
-### 13.4. Registro de Métricas de Vida (Template Obsidian)
+---
 
-**Arquivo diário complementar: `Diario-de-Vida-YYYY-MM-DD.md`**
+## 8. Padrão de Imagens e Anexos
+
+Para manter o Vault organizado e visualmente rico sem poluição.
+
+### 8.1. Configuração Global (Obsidian)
+1. Acesse **Configurações > Arquivos e Links**.
+2. Em **Local padrão para novos anexos**, selecione: `Na subpasta abaixo da pasta atual`.
+3. Em **Nome da subpasta**, digite: `_anexos`.
+
+### 8.2. Nomenclatura e Localização
+
+| Contexto | Pasta Local | Prefixo | Exemplo | Objetivo |
+| :--- | :--- | :--- | :--- | :--- |
+| **INVENTÁRIO** | `Inventario/_anexos/` | `inv-` | `inv-flor-lemon-macro.jpg` | Comparar tricomas, registrar rótulos, setups de devices. |
+| **SESSÕES** | `Sessoes/_anexos/` | `sess-` | `sess-20250128-residuo.jpg` | Analisar eficiência da extração (cor do AVB), registrar o "Set & Setting". |
+| **PROTOCOLOS** | `Protocolos/_anexos/` | `prot-` | `prot-sono-temp.jpg` | Gráficos de curva de temperatura, GIFs de respiração, âncoras visuais. |
+| **PERFIL** | `Perfil/_anexos/` | `perf-` | `perf-exame-jan25.pdf` | Exames médicos, referências pessoais. |
+
+### 8.3. Exibição Limpa (Snippet Visual)
+
+Use a sintaxe de pipe `|` para redimensionar e alinhar, criando um visual de "Enciclopédia".
+
+```markdown
+![[nome-do-arquivo.jpg|right|250]]
+```
+*A imagem flutua à direita com 250px de largura, permitindo que o texto flua ao lado dela.*
+
+---
+
+## 9. Sistema de Diário Pessoal (Obsidian + Closed-Loop)
+
+### 9.1. Estrutura do Diário
+
+**Arquivo diário:** `Diario-YYYY-MM-DD.md`
 
 ```yaml
 ---
-tipo: metrica_vida
+tipo: diario
 data: 2025-01-21
+
+# Estado Geral
+humor: 7
+energia: 6
+ansiedade: 3
 
 # Produtividade
 horas_foco: 6.5
@@ -795,14 +421,12 @@ qualidade_sono: 4
 treino_realizado: true
 dor_nivel: 2
 
-# Bem-estar
-humor_geral: 7
-ansiedade_nivel: 3
-energia_nivel: 6
-
 # Social
 interacoes_sociais: 5
 qualidade_relacoes: 4
+
+# Reflexões
+reflexao: "Hoje foi um bom dia. Consegui focar no trabalho e ainda treinar."
 ---
 
 # Dia: 2025-01-21
@@ -842,15 +466,22 @@ def extract_life_metrics(vault_path):
 
 ---
 
-## 14. Próximos Passos Imediatos
+## 10. Próximos Passos Imediatos
 
-### Configuração Inicial (2-3h)
+### Configuração Inicial (Automatizada)
 
-**Fase 1: Setup do Obsidian**
-- [ ] Criar estrutura de pastas no Vault
-- [ ] Instalar plugins: Templater, Calendar, Dataview
-- [ ] Criar template de sessão
-- [ ] Testar criação de primeira nota de sessão
+**Fase 1: Setup do Obsidian (Via Script)**
+1. Execute o script de automação para criar pastas e templates:
+   ```bash
+   python Scripts/setup_obsidian.py
+   ```
+   *Isso criará a estrutura `MeuVapoMind/` com todas as pastas `_anexos`, o `Inventario-Geral.md` e o `template-sessao.md`.*
+
+2. **Instalação Manual de Plugins (Obsidian):**
+   - Abra o Obsidian e selecione "Open folder as vault" apontando para a pasta `MeuVapoMind` criada.
+   - Vá em `Settings > Community Plugins > Turn on`.
+   - Instale e habilite: **Templater**, **Calendar**, **Dataview**, **Periodic Notes**.
+   - **Configuração do Templater:** Em `Settings > Templater`, aponte a "Template folder location" para `Sessoes/_templates`.
 
 **Fase 2: Setup do Backend**
 - [ ] Instalar Python 3.10+ e dependências:
